@@ -7,8 +7,10 @@ import {
   Pagination,
   Box,
   Grid2,
+  Icon,
 } from "@mui/material";
 import Cards from "@/components/Cards";
+
 
 // Define the type for an NFT
 interface NFT {
@@ -100,8 +102,19 @@ export default function HomePage() {
 
   return (
     <Container>
-      <Typography variant="h3" align="center" gutterBottom>
-        Explore & Trade Digital Artworks in Our NFT Marketplace
+      <Typography
+        variant="h3"
+        color="#283A46"
+        sx={{
+          textAlign: "center",
+          pt: "70px",
+          mb: 8,
+          fontWeight: 500,
+          fontFamily: "Readex Pro",
+          fontSize: 70,
+        }}
+      >
+        AVENGERS - NFT - MARETPLACE
       </Typography>
 
       <Grid2 container spacing={3}>
@@ -112,7 +125,7 @@ export default function HomePage() {
         ))}
       </Grid2>
 
-      <Box display="flex" justifyContent="center" mt={4}>
+      <Box display="flex" justifyContent="center" mt={4} mb={12}>
         <Pagination
           count={Math.ceil(nftData.length / NFTsPerPage)}
           page={page}
