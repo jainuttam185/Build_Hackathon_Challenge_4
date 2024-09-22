@@ -40,14 +40,14 @@ export const useKalpApi = () => {
     }
   };
 
-  const buy = async (uri: string, user: string, amount: bigint) => {
+  const buy = async (uri: string, user: string, amount: number) => {
     setLoading(true);
     const endpoint =
       "https://gateway-api.kalp.studio/v1/contract/evm/invoke/0x17a49c41cbeB0E0994a817A0166b545dcE82C541/mint";
     const args = {
       _uri: uri,
       _user: user,
-      amount: amount,
+      _amount: amount,
     };
     return callApi(endpoint, args);
   };

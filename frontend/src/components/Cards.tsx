@@ -37,16 +37,16 @@ const Cards = ({
     const getData = async () => {
       const tSupply = await totalSupply();
       const cBuyPrice = await buyPrice();
-      console.log(parseFloat(cBuyPrice.result.result.hex))
+      console.log(parseInt(cBuyPrice.result.result.hex))
       const cSellPrice = await sellPrice();
       setTotalSupplyVal(
-        Number(parseInt(tSupply.result.result.hex, 10) / Math.pow(10, 18))
+        Number(parseInt(tSupply.result.result.hex))
       );
       setCurrBuyPrice(
-        Number(parseInt(cBuyPrice.result.result.hex, 10) / Math.pow(10, 18))
+        Number(parseInt(cBuyPrice.result.result.hex) / Math.pow(10, 18))
       );
       setCurrSellPrice(
-        Number(parseInt(cSellPrice.result.result.hex, 10) / Math.pow(10, 18))
+        Number(parseInt(cSellPrice.result.result.hex) / Math.pow(10, 18))
       );
     };
     getData();
