@@ -1,20 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Container,
   Typography,
-  Button,
   Pagination,
   Box,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  TextField,
   Grid2,
 } from "@mui/material";
-import { useKalpApi } from "@/hooks/useKalpAPI";
 import Cards from "@/components/Cards";
 
 // Define the type for an NFT
@@ -105,11 +98,6 @@ const NFTsPerPage = 9;
 
 export default function HomePage() {
   const [page, setPage] = useState<number>(1);
-  const [openModal, setOpenModal] = useState<boolean>(false);
-  const [modalType, setModalType] = useState<"buy" | "sell" | null>(null);
-  const [address, setAddress] = useState<string>("");
-  const [amount, setAmount] = useState<string>("");
-  const { buy, sell, totalSupply, buyPrice, sellPrice, loading } = useKalpApi();
 
   const paginatedNFTs: NFT[] = nftData.slice(
     (page - 1) * NFTsPerPage,

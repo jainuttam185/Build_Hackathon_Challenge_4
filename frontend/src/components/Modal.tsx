@@ -1,6 +1,9 @@
+"use client"
+
 import { useKalpApi } from "@/hooks/useKalpAPI";
 import {
   Button,
+  CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
@@ -23,7 +26,7 @@ const Modal = ({
   setModalType: React.Dispatch<React.SetStateAction<"buy" | "sell" | null>>;
 }) => {
   const [address, setAddress] = useState<string>("");
-  const { buy, sell, buyPrice } = useKalpApi();
+  const { buy, sell, buyPrice, loading } = useKalpApi();
   const handleCloseModal = () => {
     setOpenModal(false);
     setAddress("");
@@ -63,8 +66,8 @@ const Modal = ({
         <Button onClick={handleCloseModal} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleSubmit} color="primary">
-          Submit
+        <Button onClick={handleSubmit} color="primary" disabled={loading}>
+          {loading ? <CircularProgress /> :"Submit"}
         </Button>
       </DialogActions>
     </Dialog>
