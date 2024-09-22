@@ -111,7 +111,7 @@ export default function HomePage() {
           mb: 8,
           fontWeight: 500,
           fontFamily: "Readex Pro",
-          fontSize: 70,
+          fontSize: 66,
         }}
       >
         AVENGERS - NFT - MARKETPLACE
