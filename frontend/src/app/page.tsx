@@ -14,7 +14,6 @@ import Cards from "@/components/Cards";
 interface NFT {
   id: number;
   title: string;
-  totalSupply: number;
   image: string;
 }
 
@@ -22,75 +21,63 @@ interface NFT {
 const nftData: NFT[] = [
   {
     id: 1,
-    title: "NFT 1",
-    totalSupply: 100,
-    image: "https://via.placeholder.com/150",
+    title: "Iron Man",
+    image: "https://comicvine.gamespot.com/a/uploads/scale_small/12/124259/8654427-ezgif-1-2f113089e4.jpg",
   },
   {
     id: 2,
-    title: "NFT 2",
-    totalSupply: 80,
-    image: "https://via.placeholder.com/150",
+    title: "Thor",
+    image: "https://comicvine.gamespot.com/a/uploads/scale_small/11139/111399535/9140994-20231020_153307~3.jpg",
   },
   {
     id: 3,
-    title: "NFT 3",
-    totalSupply: 50,
-    image: "https://via.placeholder.com/150",
+    title: "Hank Pym",
+    image: "https://comicvine.gamespot.com/a/uploads/scale_small/12/124259/9213988-rco023_1703686783.jpg",
   },
   {
     id: 4,
-    title: "NFT 4",
-    totalSupply: 20,
-    image: "https://via.placeholder.com/150",
+    title: "Wasp",
+    image: "https://comicvine.gamespot.com/a/uploads/scale_small/10/100647/6039335-wasp.jpg",
   },
   {
     id: 5,
-    title: "NFT 5",
-    totalSupply: 60,
-    image: "https://via.placeholder.com/150",
+    title: "Hulk",
+    image: "https://comicvine.gamespot.com/a/uploads/scale_small/12/124259/9174497-21.jpeg",
   },
   {
     id: 6,
-    title: "NFT 6",
-    totalSupply: 10,
-    image: "https://via.placeholder.com/150",
+    title: "Captain America",
+    image: "https://comicvine.gamespot.com/a/uploads/scale_small/12/124259/8459983-rco031_1650495781.jpg",
   },
   {
     id: 7,
-    title: "NFT 7",
-    totalSupply: 90,
-    image: "https://via.placeholder.com/150",
+    title: "Hawkeye",
+    image: "https://comicvine.gamespot.com/a/uploads/scale_small/11156/111564182/9384867-thunderbolts_vol_4_1_trading_card_variant_textless.jpg",
   },
   {
     id: 8,
-    title: "NFT 8",
-    totalSupply: 40,
-    image: "https://via.placeholder.com/150",
+    title: "QuickSilver",  
+    image: "https://comicvine.gamespot.com/a/uploads/scale_small/12/124259/9250882-ezgif-1-9183cabfe6.jpg",
   },
   {
     id: 9,
-    title: "NFT 9",
-    totalSupply: 30,
-    image: "https://via.placeholder.com/150",
+    title: "Scarlet Witch",
+    image: "https://comicvine.gamespot.com/a/uploads/scale_small/11174/111743204/9364864-scarletwitch%235joshuaswaby.jpg",
   },
   {
     id: 10,
-    title: "NFT 10",
-    totalSupply: 110,
-    image: "https://via.placeholder.com/150",
+    title: "Swordsman",
+    image: "https://comicvine.gamespot.com/a/uploads/scale_small/11/117763/2310795-swordsman.jpg",
   },
   {
     id: 11,
-    title: "NFT 11",
-    totalSupply: 70,
-    image: "https://via.placeholder.com/150",
+    title: "Hercules",
+    image: "https://comicvine.gamespot.com/a/uploads/scale_small/12/124259/7817301-hercules_%28earth-616%29_from_avengers_no_road_home_vol_1_10_001.jpg",
   },
   {
     id: 12,
-    title: "NFT 12",
-    totalSupply: 15,
-    image: "https://via.placeholder.com/150",
+    title: "Black Panther",
+    image: "https://comicvine.gamespot.com/a/uploads/scale_small/12/124259/8251800-black_panther_vol_8_1_devil_dog_comics_and_jolzar_collectibles_exclusive_virgin_variant.jpg",
   },
 ];
 
