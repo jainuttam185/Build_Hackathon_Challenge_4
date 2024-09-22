@@ -12,6 +12,7 @@ import {
 import Cards from "@/components/Cards";
 
 
+
 // Define the type for an NFT
 interface NFT {
   id: number;

@@ -6,8 +6,8 @@ const inter = Handjet({ subsets: ['latin'] });
 
 
 export const metadata = {
-  title: 'Airdrop Machine',
-  description: 'Click to get airdrop',
+  title: 'Avengers-NFT-Marketplace',
+  description: 'Explore & Trade Digital Artworks in Our NFT Marketplace',
 };
 
 
