@@ -67,7 +67,7 @@ export const useKalpApi = (tokenId : number) => {
     }
   };
 
-  const buy = async (uri: string, user: string, amount: bigint) => {
+  const buy = async (uri: string, user: string, amount: number) => {
     setLoading(true);
     const contractAddress = getContractAddress(tokenId); 
     const endpoint =
@@ -75,7 +75,7 @@ export const useKalpApi = (tokenId : number) => {
     const args = {
       _uri: uri,
       _user: user,
-      amount: amount,
+      _amount: amount,
     };
     return callApi(endpoint, args);
   };

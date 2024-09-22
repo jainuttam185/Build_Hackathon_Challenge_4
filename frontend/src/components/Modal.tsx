@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useKalpApi } from "@/hooks/useKalpAPI";
 import {
@@ -15,33 +15,43 @@ import React, { useState } from "react";
 const Modal = ({
   openModal,
   modalType,
-  metadata,
   setOpenModal,
   setModalType,
 }: {
   openModal: boolean;
   modalType: "buy" | "sell" | null;
-  metadata: string;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
   setModalType: React.Dispatch<React.SetStateAction<"buy" | "sell" | null>>;
 }) => {
   const [address, setAddress] = useState<string>("");
-  const { buy, sell, buyPrice, loading } = useKalpApi();
+  const { buy, sell, buyPrice, sellPrice, totalSupply, loading } = useKalpApi();
   const handleCloseModal = () => {
     setOpenModal(false);
     setAddress("");
     setModalType(null);
   };
 
+  const metadata =
+    "ipfs://bafkreidblxpobb5frd57djj43mavu2ixtbyrofqq3ieflpwavaoqq524yq";
+
   const handleSubmit = async () => {
     // Handle transaction logic here
     try {
       if (modalType === "buy") {
         const currBuyPrice = await buyPrice();
-        const data = await buy(metadata, address, currBuyPrice);
+        console.log(parseInt(currBuyPrice.result.result.hex))
+        const data = await buy(
+          metadata,
+          address,
+          parseInt(currBuyPrice.result.result.hex)
+        );
+        console.log(data)
       } else if (modalType === "sell") {
         const data = await sell(address);
       }
+      await totalSupply();
+      await buyPrice();
+      await sellPrice();
     } catch (error) {
       console.error(error);
     }
@@ -67,7 +77,7 @@ const Modal = ({
           Cancel
         </Button>
         <Button onClick={handleSubmit} color="primary" disabled={loading}>
-          {loading ? <CircularProgress /> :"Submit"}
+          {loading ? <CircularProgress /> : "Submit"}
         </Button>
       </DialogActions>
     </Dialog>

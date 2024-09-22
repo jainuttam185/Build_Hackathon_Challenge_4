@@ -18,7 +18,6 @@ const Cards = ({
   nft: {
     id: number;
     title: string;
-    totalSupply: number;
     image: string;
   };
 }) => {
@@ -37,17 +36,17 @@ const Cards = ({
   useEffect(() => {
     const getData = async () => {
       const tSupply = await totalSupply();
-      console.log(parseInt(tSupply.result.result.hex, 10));
       const cBuyPrice = await buyPrice();
+      console.log(parseInt(cBuyPrice.result.result.hex))
       const cSellPrice = await sellPrice();
       setTotalSupplyVal(
-        Number(parseInt(tSupply.result.result.hex, 10) / Math.pow(10, 18))
+        Number(parseInt(tSupply.result.result.hex))
       );
       setCurrBuyPrice(
-        Number(parseInt(cBuyPrice.result.result.hex, 10) / Math.pow(10, 18))
+        Number(parseInt(cBuyPrice.result.result.hex) / Math.pow(10, 18))
       );
       setCurrSellPrice(
-        Number(parseInt(cSellPrice.result.result.hex, 10) / Math.pow(10, 18))
+        Number(parseInt(cSellPrice.result.result.hex) / Math.pow(10, 18))
       );
     };
     getData();
@@ -75,7 +74,7 @@ const Cards = ({
               sx={{ marginRight: 1 }}
               onClick={() => handleOpenModal("buy")}
             >
-              Buy
+              Buy @ {currBuyPrice}
             </Button>
             <Button
               variant="outlined"
@@ -83,7 +82,7 @@ const Cards = ({
               size="small"
               onClick={() => handleOpenModal("sell")}
             >
-              Sell
+              Sell @ {currSellPrice}
             </Button>
           </Box>
         </CardContent>
@@ -91,7 +90,6 @@ const Cards = ({
       <Modal
         openModal={openModal}
         modalType={modalType}
-        metadata={nft.image}
         setOpenModal={setOpenModal}
         setModalType={setModalType}
       />
