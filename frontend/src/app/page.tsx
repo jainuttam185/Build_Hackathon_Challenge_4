@@ -114,7 +114,7 @@ export default function HomePage() {
           fontSize: 70,
         }}
       >
-        AVENGERS - NFT - MARETPLACE
+        AVENGERS - NFT - MARKETPLACE
       </Typography>
 
       <Grid2 container spacing={3}>
