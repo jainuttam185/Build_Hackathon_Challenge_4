@@ -13,18 +13,29 @@ import {
 import React, { useState } from "react";
 
 const Modal = ({
+  id,
+  title,
   openModal,
   modalType,
   setOpenModal,
   setModalType,
+  setTotalSupplyVal,
+  setCurrBuyPrice,
+  setCurrSellPrice,
 }: {
+  id: number;
+  title: string;
   openModal: boolean;
   modalType: "buy" | "sell" | null;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
   setModalType: React.Dispatch<React.SetStateAction<"buy" | "sell" | null>>;
+  setTotalSupplyVal: React.Dispatch<React.SetStateAction<number>>;
+  setCurrBuyPrice: React.Dispatch<React.SetStateAction<number>>;
+  setCurrSellPrice: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const [address, setAddress] = useState<string>("");
-  const { buy, sell, buyPrice, sellPrice, totalSupply, loading } = useKalpApi();
+  const { buy, sell, buyPrice, sellPrice, totalSupply, loading } =
+    useKalpApi(id);
   const handleCloseModal = () => {
     setOpenModal(false);
     setAddress("");
@@ -43,12 +54,22 @@ const Modal = ({
         const data = await buy(
           metadata,
           address,
-          parseInt(currBuyPrice.result.result.hex),
+          parseInt(currBuyPrice.result.result.hex)
         );
         console.log(data);
       } else if (modalType === "sell") {
         const data = await sell(address);
       }
+      const tSupply = await totalSupply();
+      const cBuyPrice = await buyPrice();
+      const cSellPrice = await sellPrice();
+      setTotalSupplyVal(Number(parseInt(tSupply.result.result.hex)));
+      setCurrBuyPrice(
+        Number(parseInt(cBuyPrice.result.result.hex) / Math.pow(10, 18))
+      );
+      setCurrSellPrice(
+        Number(parseInt(cSellPrice.result.result.hex) / Math.pow(10, 18))
+      );
     } catch (error) {
       console.error(error);
     }
@@ -56,7 +77,7 @@ const Modal = ({
   };
   return (
     <Dialog open={openModal} onClose={handleCloseModal} fullWidth>
-      <DialogTitle>{modalType === "buy" ? "Buy NFT" : "Sell NFT"}</DialogTitle>
+      <DialogTitle>{modalType === "buy" ? `Buy ${title}` : `Sell ${title}`}</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus

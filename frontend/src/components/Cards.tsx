@@ -26,7 +26,7 @@ const Cards = ({
   const [totalSupplyVal, setTotalSupplyVal] = useState<number>(0);
   const [currBuyPrice, setCurrBuyPrice] = useState<number>(0);
   const [currSellPrice, setCurrSellPrice] = useState<number>(0);
-  const { totalSupply, buyPrice, sellPrice } = useKalpApi();
+  const { totalSupply, buyPrice, sellPrice } = useKalpApi(nft.id);
 
   const handleOpenModal = (type: "buy" | "sell") => {
     setModalType(type);
@@ -73,22 +73,29 @@ const Cards = ({
             >
               Buy @ {currBuyPrice}
             </Button>
-            <Button
-              variant="outlined"
-              color="secondary"
-              size="small"
-              onClick={() => handleOpenModal("sell")}
-            >
-              Sell @ {currSellPrice}
-            </Button>
+            {currSellPrice > 0 && (
+              <Button
+                variant="outlined"
+                color="secondary"
+                size="small"
+                onClick={() => handleOpenModal("sell")}
+              >
+                {`Sell @ ${currSellPrice}`}
+              </Button>
+            )}
           </Box>
         </CardContent>
       </Card>
       <Modal
+        id={nft.id}
+        title={nft.title}
         openModal={openModal}
         modalType={modalType}
         setOpenModal={setOpenModal}
         setModalType={setModalType}
+        setTotalSupplyVal={setTotalSupplyVal}
+        setCurrBuyPrice={setCurrBuyPrice}
+        setCurrSellPrice={setCurrSellPrice}
       />
     </>
   );
