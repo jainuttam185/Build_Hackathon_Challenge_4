@@ -18,7 +18,6 @@ const Cards = ({
   nft: {
     id: number;
     title: string;
-    totalSupply: number;
     image: string;
   };
 }) => {
