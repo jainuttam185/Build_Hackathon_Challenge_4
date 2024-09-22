@@ -37,8 +37,8 @@ const Cards = ({
   useEffect(() => {
     const getData = async () => {
       const tSupply = await totalSupply();
-      console.log(parseInt(tSupply.result.result.hex, 10));
       const cBuyPrice = await buyPrice();
+      console.log(parseFloat(cBuyPrice.result.result.hex))
       const cSellPrice = await sellPrice();
       setTotalSupplyVal(
         Number(parseInt(tSupply.result.result.hex, 10) / Math.pow(10, 18))
@@ -75,7 +75,7 @@ const Cards = ({
               sx={{ marginRight: 1 }}
               onClick={() => handleOpenModal("buy")}
             >
-              Buy
+              Buy @ {currBuyPrice}
             </Button>
             <Button
               variant="outlined"
@@ -83,7 +83,7 @@ const Cards = ({
               size="small"
               onClick={() => handleOpenModal("sell")}
             >
-              Sell
+              Sell @ {currSellPrice}
             </Button>
           </Box>
         </CardContent>
@@ -91,7 +91,6 @@ const Cards = ({
       <Modal
         openModal={openModal}
         modalType={modalType}
-        metadata={nft.image}
         setOpenModal={setOpenModal}
         setModalType={setModalType}
       />

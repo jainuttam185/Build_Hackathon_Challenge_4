@@ -15,13 +15,11 @@ import React, { useState } from "react";
 const Modal = ({
   openModal,
   modalType,
-  metadata,
   setOpenModal,
   setModalType,
 }: {
   openModal: boolean;
   modalType: "buy" | "sell" | null;
-  metadata: string;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
   setModalType: React.Dispatch<React.SetStateAction<"buy" | "sell" | null>>;
 }) => {
@@ -32,6 +30,8 @@ const Modal = ({
     setAddress("");
     setModalType(null);
   };
+
+  const metadata = "ipfs://bafkreidblxpobb5frd57djj43mavu2ixtbyrofqq3ieflpwavaoqq524yq";
 
   const handleSubmit = async () => {
     // Handle transaction logic here
