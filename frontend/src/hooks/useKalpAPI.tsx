@@ -1,9 +1,36 @@
 "use client";
 import { useState } from "react";
+type ContractAddressMap = {
+  [key: number]: string;
+};
 
-export const useKalpApi = () => {
+export const useKalpApi = (tokenId : number) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+
+
+  
+
+  const contractAddressMap: ContractAddressMap = {
+    0: "0x17a49c41cbeB0E0994a817A0166b545dcE82C541",
+    1: "0x17a49c41cbeB0E0994a817A0166b545dcE82C541",
+    2: "0x17a49c41cbeB0E0994a817A0166b545dcE82C541",
+    3: "0x17a49c41cbeB0E0994a817A0166b545dcE82C541",
+    4: "0x17a49c41cbeB0E0994a817A0166b545dcE82C541",
+    5: "0x17a49c41cbeB0E0994a817A0166b545dcE82C541",
+    6: "0x17a49c41cbeB0E0994a817A0166b545dcE82C541",
+    7: "0x17a49c41cbeB0E0994a817A0166b545dcE82C541",
+    8: "0x17a49c41cbeB0E0994a817A0166b545dcE82C541",
+    9: "0x17a49c41cbeB0E0994a817A0166b545dcE82C541",
+    10: "0x17a49c41cbeB0E0994a817A0166b545dcE82C541",
+    11: "0x17a49c41cbeB0E0994a817A0166b545dcE82C541",
+  };
+
+  // Get contract address from tokenId
+  const getContractAddress = (tokenId: number): string => {
+    return contractAddressMap[tokenId] || ""; 
+  }
 
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -42,8 +69,9 @@ export const useKalpApi = () => {
 
   const buy = async (uri: string, user: string, amount: bigint) => {
     setLoading(true);
+    const contractAddress = getContractAddress(tokenId); 
     const endpoint =
-      "https://gateway-api.kalp.studio/v1/contract/evm/invoke/0x17a49c41cbeB0E0994a817A0166b545dcE82C541/mint";
+      "https://gateway-api.kalp.studio/v1/contract/evm/invoke/${contractAddress}/mint";
     const args = {
       _uri: uri,
       _user: user,
