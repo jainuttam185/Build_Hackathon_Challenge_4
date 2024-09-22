@@ -7,7 +7,6 @@ import {
   Pagination,
   Box,
   Grid2,
-  Icon,
 } from "@mui/material";
 import Cards from "@/components/Cards";
 
