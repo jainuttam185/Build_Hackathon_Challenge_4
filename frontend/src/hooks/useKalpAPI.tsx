@@ -1,5 +1,5 @@
-"use client"
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
 
 export const useKalpApi = () => {
   const [loading, setLoading] = useState(false);
@@ -7,21 +7,21 @@ export const useKalpApi = () => {
 
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-  const callApi = async (endpoint: string, args : { [key: string]: any }) => {
+  const callApi = async (endpoint: string, args: { [key: string]: any }) => {
     setError(null);
     const params = {
-      network: 'TESTNET',
-      blockchain: 'KALP',
-      walletAddress: '1e8e3b80712f8eb6c12a6267a1fd4ffb799cb9f5',
+      network: "SEPOLIA",
+      blockchain: "ETH",
+      walletAddress: "0x8218fb27E7b5f9dDBe343FF551AC0f56647CC901",
       args: args,
     };
 
     try {
       const response = await fetch(endpoint, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey!,
+          "Content-Type": "application/json",
+          "x-api-key": apiKey!,
         },
         body: JSON.stringify(params),
       });
@@ -29,56 +29,59 @@ export const useKalpApi = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || 'Something went wrong');
+        throw new Error(data.message || "Something went wrong");
       }
       setLoading(false);
       return data;
-    } catch (err : any) {
+    } catch (err: any) {
       setError(err);
       setLoading(false);
       throw err;
     }
   };
 
-  const claim = async (address : string) => {
+  const buy = async (uri: string, user: string, amount: bigint) => {
     setLoading(true);
     const endpoint =
-      'https://gateway-api.kalp.studio/v1/contract/kalp/invoke/kivnvFOVja3A4Uk88jTm9nE8x865cl7R1726849374787/Claim';
+      "https://gateway-api.kalp.studio/v1/contract/evm/invoke/0x17a49c41cbeB0E0994a817A0166b545dcE82C541/mint";
     const args = {
-      amount: 100,
-      address: address,
+      _uri: uri,
+      _user: user,
+      amount: amount,
     };
     return callApi(endpoint, args);
   };
 
-  const balanceOf = async (account : string) => {
+  const sell = async (user: string) => {
+    setLoading(true);
     const endpoint =
-      'https://gateway-api.kalp.studio/v1/contract/kalp/query/kivnvFOVja3A4Uk88jTm9nE8x865cl7R1726849374787/BalanceOf';
+      "https://gateway-api.kalp.studio/v1/contract/evm/invoke/0x17a49c41cbeB0E0994a817A0166b545dcE82C541/burn";
     const args = {
-      account: account,
+      _user: user,
     };
     return callApi(endpoint, args);
   };
 
   const totalSupply = async () => {
     const endpoint =
-      'https://gateway-api.kalp.studio/v1/contract/kalp/query/kivnvFOVja3A4Uk88jTm9nE8x865cl7R1726849374787/TotalSupply';
+      "https://gateway-api.kalp.studio/v1/contract/evm/query/0x17a49c41cbeB0E0994a817A0166b545dcE82C541/totalSupply";
     const args = {};
     return callApi(endpoint, args);
   };
 
-  const transferFrom = async (from: string, to: string, value: number) => {
-    setLoading(true);
-    const endpoint = 'https://gateway-api.kalp.studio/v1/contract/kalp/invoke/kivnvFOVja3A4Uk88jTm9nE8x865cl7R1726849374787/TransferFrom';
-    const args = {
-      from: from,
-      to: to,
-      value: value,
-    };
+  const buyPrice = async () => {
+    const endpoint =
+      "https://gateway-api.kalp.studio/v1/contract/evm/query/0x17a49c41cbeB0E0994a817A0166b545dcE82C541/Price";
+    const args = {};
     return callApi(endpoint, args);
   };
 
-  return { claim, balanceOf, totalSupply, transferFrom, loading, error };
+  const sellPrice = async () => {
+    const endpoint =
+      "https://gateway-api.kalp.studio/v1/contract/evm/query/0x17a49c41cbeB0E0994a817A0166b545dcE82C541/BuurnPrice";
+    const args = {};
+    return callApi(endpoint, args);
+  };
+
+  return { buy, sell, totalSupply, buyPrice, sellPrice, loading, error };
 };
-
-
