@@ -54,9 +54,9 @@ const Cards = ({
       <Card>
         <CardMedia
           component="img"
-          height="140"
           image={nft.image}
           alt={nft.title}
+          sx={{height:"600px"}}
         />
         <CardContent>
           <Typography variant="h6">{nft.title}</Typography>

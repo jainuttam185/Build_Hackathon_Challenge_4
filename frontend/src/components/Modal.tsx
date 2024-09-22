@@ -75,12 +75,12 @@ const Modal = ({
   };
   return (
     <Dialog open={openModal} onClose={handleCloseModal} fullWidth>
-      <DialogTitle>{modalType === "buy" ? `Buy ${title}` : `Sell ${title}`}</DialogTitle>
+      <DialogTitle>{modalType === "buy" ? `Buy ${title}` : `Sell ${title}`} NFT</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus
           margin="dense"
-          label="Address"
+          label="Your Wallet Address"
           type="text"
           fullWidth
           variant="outlined"
