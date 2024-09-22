@@ -39,19 +39,16 @@ const Modal = ({
     try {
       if (modalType === "buy") {
         const currBuyPrice = await buyPrice();
-        console.log(parseInt(currBuyPrice.result.result.hex))
+        console.log(parseInt(currBuyPrice.result.result.hex));
         const data = await buy(
           metadata,
           address,
-          parseInt(currBuyPrice.result.result.hex)
+          parseInt(currBuyPrice.result.result.hex),
         );
-        console.log(data)
+        console.log(data);
       } else if (modalType === "sell") {
         const data = await sell(address);
       }
-      await totalSupply();
-      await buyPrice();
-      await sellPrice();
     } catch (error) {
       console.error(error);
     }
@@ -77,7 +74,7 @@ const Modal = ({
           Cancel
         </Button>
         <Button onClick={handleSubmit} color="primary" disabled={loading}>
-          {loading ? <CircularProgress /> : "Submit"}
+          {loading ? <CircularProgress size={25} /> : "Submit"}
         </Button>
       </DialogActions>
     </Dialog>

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useKalpApi } from "@/hooks/useKalpAPI";
 import {
@@ -37,11 +37,8 @@ const Cards = ({
     const getData = async () => {
       const tSupply = await totalSupply();
       const cBuyPrice = await buyPrice();
-      console.log(parseInt(cBuyPrice.result.result.hex))
       const cSellPrice = await sellPrice();
-      setTotalSupplyVal(
-        Number(parseInt(tSupply.result.result.hex))
-      );
+      setTotalSupplyVal(Number(parseInt(tSupply.result.result.hex)));
       setCurrBuyPrice(
         Number(parseInt(cBuyPrice.result.result.hex) / Math.pow(10, 18))
       );
