@@ -50,15 +50,13 @@ const Modal = ({
     try {
       if (modalType === "buy") {
         const currBuyPrice = await buyPrice();
-        console.log(parseInt(currBuyPrice.result.result.hex));
-        const data = await buy(
+        await buy(
           metadata,
           address,
           parseInt(currBuyPrice.result.result.hex)
         );
-        console.log(data);
       } else if (modalType === "sell") {
-        const data = await sell(address);
+        await sell(address);
       }
       const tSupply = await totalSupply();
       const cBuyPrice = await buyPrice();
